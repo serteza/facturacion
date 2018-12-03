@@ -1,0 +1,106 @@
+[21-Sep-2018 13:43:59 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[21-Sep-2018 13:47:48 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[21-Sep-2018 13:48:52 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[22-Sep-2018 10:49:49 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[22-Sep-2018 10:53:59 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[25-Sep-2018 15:14:40 America/Mexico_City] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[01-Oct-2018 19:01:19 America/Merida] antes: 5
+[01-Oct-2018 19:01:19 America/Merida] antes: 5
+[01-Oct-2018 19:01:19 America/Merida] antes: 5
+[01-Oct-2018 19:01:19 America/Merida] resta dias: 8
+[01-Oct-2018 19:01:19 America/Merida] false num dias: 5
+[01-Oct-2018 19:01:19 America/Merida] false resta dias: 8
+[01-Oct-2018 19:01:19 America/Merida] false: 0
+[01-Oct-2018 19:01:19 America/Merida] antes: 0
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] antes: 1
+[01-Oct-2018 19:16:15 America/Merida] resta dias: 7
+[01-Oct-2018 19:16:15 America/Merida] false num dias: 1
+[01-Oct-2018 19:16:15 America/Merida] false resta dias: 7
+[01-Oct-2018 19:16:15 America/Merida] false: 0
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] antes: 7
+[01-Oct-2018 19:41:24 America/Merida] resta dias: 7
+[01-Oct-2018 19:41:24 America/Merida] false num dias: 7
+[01-Oct-2018 19:41:24 America/Merida] false resta dias: 7
+[01-Oct-2018 19:41:24 America/Merida] false: 0
+[01-Oct-2018 19:41:24 America/Merida] antes: 0
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] antes: 8
+[01-Oct-2018 19:50:08 America/Merida] resta dias: 16
+[01-Oct-2018 19:50:08 America/Merida] false num dias: 8
+[01-Oct-2018 19:50:08 America/Merida] false resta dias: 16
+[01-Oct-2018 19:50:08 America/Merida] false: 0
+[01-Oct-2018 19:55:03 America/Merida] antes: 1
+[01-Oct-2018 19:55:03 America/Merida] antes: 1
+[01-Oct-2018 19:55:03 America/Merida] resta dias: 9
+[01-Oct-2018 19:55:03 America/Merida] false num dias: 1
+[01-Oct-2018 19:55:03 America/Merida] false resta dias: 9
+[01-Oct-2018 19:55:03 America/Merida] false: 0
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] antes: 2
+[01-Oct-2018 20:00:51 America/Merida] resta dias: 14
+[01-Oct-2018 20:00:51 America/Merida] false num dias: 2
+[01-Oct-2018 20:00:51 America/Merida] false resta dias: 14
+[01-Oct-2018 20:00:51 America/Merida] false: 0
+[03-Oct-2018 18:03:38 America/Merida] antes: 1
+[03-Oct-2018 18:03:38 America/Merida] antes: 1
+[03-Oct-2018 18:03:38 America/Merida] antes: 1
+[03-Oct-2018 18:03:38 America/Merida] resta dias: 6
+[03-Oct-2018 18:03:39 America/Merida] false num dias: 1
+[03-Oct-2018 18:03:39 America/Merida] false resta dias: 6
+[03-Oct-2018 18:03:39 America/Merida] false: 0
+[03-Oct-2018 18:08:52 America/Merida] antes: 1
+[03-Oct-2018 18:08:52 America/Merida] antes: 1
+[03-Oct-2018 18:08:52 America/Merida] antes: 1
+[03-Oct-2018 18:08:52 America/Merida] resta dias: 6
+[03-Oct-2018 18:08:52 America/Merida] false num dias: 1
+[03-Oct-2018 18:08:52 America/Merida] false resta dias: 6
+[03-Oct-2018 18:08:52 America/Merida] false: 0
+[03-Oct-2018 20:23:28 America/Merida] antes: 1
+[03-Oct-2018 20:23:28 America/Merida] antes: 1
+[03-Oct-2018 20:23:28 America/Merida] antes: 1
+[03-Oct-2018 20:23:28 America/Merida] resta dias: 6
+[03-Oct-2018 20:23:28 America/Merida] false num dias: 1
+[03-Oct-2018 20:23:28 America/Merida] false resta dias: 6
+[03-Oct-2018 20:23:28 America/Merida] false: 0
+[04-Oct-2018 09:19:12 America/Merida] antes: 2
+[04-Oct-2018 09:19:12 America/Merida] resta dias: 6
+[04-Oct-2018 09:19:12 America/Merida] false num dias: 2
+[04-Oct-2018 09:19:12 America/Merida] false resta dias: 6
+[04-Oct-2018 09:19:12 America/Merida] false: 0
+[04-Oct-2018 09:19:12 America/Merida] antes: 0
+[04-Oct-2018 09:19:12 America/Merida] antes: 0
+[04-Oct-2018 09:24:44 America/Merida] antes: 8
+[04-Oct-2018 09:24:44 America/Merida] resta dias: 4
+[04-Oct-2018 09:24:44 America/Merida] true num dias: 8
+[04-Oct-2018 09:24:44 America/Merida] true resta dias: 4
+[04-Oct-2018 09:24:44 America/Merida] true: 4
+[04-Oct-2018 09:24:44 America/Merida] antes: 4
+[04-Oct-2018 09:24:44 America/Merida] resta dias: 8
+[04-Oct-2018 09:24:44 America/Merida] false num dias: 4
+[04-Oct-2018 09:24:44 America/Merida] false resta dias: 8
+[04-Oct-2018 09:24:44 America/Merida] false: 0
+[04-Oct-2018 09:24:44 America/Merida] antes: 0
