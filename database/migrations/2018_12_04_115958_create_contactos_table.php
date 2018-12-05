@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAcumVacacionesTable extends Migration
+class CreateContactosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateAcumVacacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('acum_vacaciones', function (Blueprint $table) {
+        Schema::create('contactos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            $table->collation = 'utf8_spanish_ci';
 
             $table->increments('id');
-            $table->integer('codigo_id')->unsigned()->index()->nullable();
-            $table->date('anio');
-            $table->integer('num');
-            $table->integer('dias_permitidos');
-            $table->integer('dias_gozados');
-            $table->integer('dias_cancelados');
+            $table->string('tel');
+            $table->string('movil');
+            $table->string('mail');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreateAcumVacacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acum_vacaciones');
+        Schema::dropIfExists('contactos');
     }
 }
