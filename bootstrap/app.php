@@ -125,7 +125,7 @@ $app->register(Codedge\Fpdf\FpdfServiceProvider::class);
 
 $app->register(SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
 
-$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+//$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
