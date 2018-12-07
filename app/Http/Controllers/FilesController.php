@@ -89,18 +89,9 @@ class FilesController extends Controller
             $passphrase ="crh140605";
 
             $pathTocreate = $path."/".$dir.".key";
-            $keyFile =  file_get_contents($pathTocreate);
-
-            $res = JWKFactory::createFromKeyFile($pathTocreate, $passphrase, ['use' => 'sig', 'alg'=> 'RS256']);
-
-            //$res=openssl_pkey_new();
-
-            // Get private key
-            //openssl_pkey_export($keyFile, $res, $passphrase);
-
+            $fileOut = $path."/".$dir.".key.pem";
+            //$keyFile =  file_get_contents($pathTocreate);
             //$keypemFile = "-----BEGIN PRIVATE KEY-----\r\n" . chunk_split(base64_encode($keyFile), 64) . "-----END PRIVATE KEY-----";
-            error_log($res);
-            return response()->json(["message" => $res],200);
             exec("openssl pkcs8 -inform DER -in ".$pathTocreate." -out ".$fileOut." -passin pass:".$passphrase);
             $response .= ", el archivo .key.pem creado ";
 
