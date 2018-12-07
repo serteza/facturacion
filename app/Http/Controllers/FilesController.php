@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Jose\Factory\JWKFactory;
 use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
