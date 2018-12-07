@@ -72,7 +72,7 @@ class FilesController extends Controller
             $pathTocreate = $path."/".$dir.".cer";
             $cerFile =  file_get_contents($pathTocreate);
             $pemFile = "-----BEGIN CERTIFICATE-----\r\n" . chunk_split(base64_encode($cerFile), 64) . '-----END CERTIFICATE-----';
-            //error_log($res);
+            error_log($pemFile);
             Storage::disk('local')->put($dir."/".$dir.".pem", $pemFile, 'public');
             $response .= ", el archivo .pem creado ";
 
