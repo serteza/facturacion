@@ -39,7 +39,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/keys'),
             'url' => env('APP_URL').'/storage/app/keys',
-            'visibility' => 'private',
+            'visibility' => 'public',
         ],
         'styles' => [
             'driver' => 'local',

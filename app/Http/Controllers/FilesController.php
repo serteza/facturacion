@@ -45,7 +45,7 @@ class FilesController extends Controller
 
         if(!Storage::disk('local')->exists($dir."/".$dir.".cer")){
 
-            Storage::disk('local')->put($dir."/".$dir.".cer", file_get_contents($cerFile));
+            Storage::disk('local')->put($dir."/".$dir.".cer", file_get_contents($cerFile),'public');
 
             $response .= " El archivo .cer guardado exitoso ";
         
@@ -55,7 +55,7 @@ class FilesController extends Controller
 
         if(!Storage::disk('local')->exists($dir."/".$dir.".key")){
 
-            Storage::disk('local')->put($dir."/".$dir.".key", file_get_contents($keyFile));
+            Storage::disk('local')->put($dir."/".$dir.".key", file_get_contents($keyFile),'public');
 
             $response .= ", el archivo .key guardado exitoso ";
         
@@ -73,7 +73,7 @@ class FilesController extends Controller
             $cerFile =  file_get_contents($pathTocreate);
             $pemFile = "-----BEGIN CERTIFICATE-----\r\n" . chunk_split(base64_encode($cerFile), 64) . '-----END CERTIFICATE-----';
             //error_log($res);
-            Storage::disk('local')->put($dir."/".$dir.".pem", $pemFile);
+            Storage::disk('local')->put($dir."/".$dir.".pem", $pemFile, 'public');
             $response .= ", el archivo .pem creado ";
 
             return $response;
