@@ -101,7 +101,7 @@ class FilesController extends Controller
             //$keypemFile = "-----BEGIN PRIVATE KEY-----\r\n" . chunk_split(base64_encode($keyFile), 64) . "-----END PRIVATE KEY-----";
             error_log($res);
             return response()->json(["message" => $res],200);
-            //exec("openssl pkcs8 -inform DER -in ".$pathTocreate." -out ".$fileOut." -passin pass:".$passphrase);
+            exec("openssl pkcs8 -inform DER -in ".$pathTocreate." -out ".$fileOut." -passin pass:".$passphrase);
             $response .= ", el archivo .key.pem creado ";
 
             return $response;
