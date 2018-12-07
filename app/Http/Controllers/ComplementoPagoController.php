@@ -47,7 +47,7 @@ class ComplementoPagoController extends Controller
         $rfcEmisor = preg_split('[/.-]', $Certificado['subject']['x500UniqueIdentifier'])[0];
         $razonEmisor = $Certificado['subject']['name'];
         //convertimos certificado a base64
-        $pathCer = Storage::get($req->Emisor['Rfc'].'/'.$serialNumber.'.cer');
+        $pathCer = Storage::get($req->Emisor['Rfc'].'/'.$req->Emisor['Rfc'].'.cer');
         $b4cer = base64_encode($pathCer);
         //se genera el header cfdi:Comprobante
         $xml = $genXML->xmlHeader($xml, $req->Comprobante, $serialNumber, $b4cer);
