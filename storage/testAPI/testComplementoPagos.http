@@ -1,0 +1,40 @@
+POST http://localhost:8000/api/complemento_pagos HTTP/1.1
+content-type: application/json
+
+{
+    "Comprobante":{
+        "Serie":"A",
+        "Folio":"271",
+        "Fecha":"2018-11-22T11:31:45",
+        "LugarExpedicion":"97219"
+    },
+    "Emisor":{
+        "Rfc":"CIN140605QM1",
+        "Nombre":"CRH INNOVACION SCP",
+        "RegimenFiscal":"601"
+    },
+    "Receptor":{
+        "Rfc":"SMP080512JY8",
+        "Nombre":"SERVICIOS MULTIPLES DE PERSONAL EN LA REGION S DE RL DE CV",
+        "UsoCFDI":"P01"
+    },
+    "Pago":{
+        "FechaPago":"2018-11-13T12:59:00",
+        "FormaDePagoP":"03",
+        "MonedaP":"MXN",
+        "Monto":"1856.00"
+    },
+    "DoctoRelacionado":[
+        {
+            "IdDocumento":"5C11B520-5191-42EC-AE8C-1C7B4E433F3F",
+            "Serie":"A",
+            "Folio":"271",
+            "MonedaDR":"MXN",
+            "MetodoDePagoDR":"PPD",
+            "NumParcialidad":"1",
+            "ImpSaldoAnt":"1856.00",
+            "ImpPagado":"1856.00",
+            "ImpSaldoInsoluto":"0"
+        }
+    ]
+}

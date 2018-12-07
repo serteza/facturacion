@@ -24,8 +24,8 @@ class ComplementoPagoController extends Controller
 
         //error_log( print_r($Certificado, TRUE) );
         $parseSerialNumber= $Certificado['serialNumberHex'];
-  
-        $priv_key = Storage::get($req->Emisor['Rfc'].'/CSD_A_CIN140605QM1_20160926_201703.key');
+
+        /*$priv_key = Storage::get($req->Emisor['Rfc'].'/CSD_A_CIN140605QM1_20160926_201703.key');
         $passphrase ="crh140605";
         $keys = openssl_pkey_new(array("digest_alg" => 'sha512',
                                        "private_key_bits" => 1024,
@@ -35,7 +35,7 @@ class ComplementoPagoController extends Controller
         
         //openssl_private_decrypt($crypttext,$newsource,$res);
 
-        error_log( $privkey);
+        error_log( $privkey);*/
     
         //obtenemos numero de certificado
         $serialNumber = '';
