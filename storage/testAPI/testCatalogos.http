@@ -1,0 +1,3 @@
+GET http://localhost:8000/api/catalogos_sat?name=c_Pais HTTP/1.1
+
+GET http://localhost:8000/api/catalogos_sat?name=c_Moneda HTTP/1.1
