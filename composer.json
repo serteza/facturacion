@@ -13,7 +13,7 @@
         "league/flysystem": " ~1.0",
         "codedge/laravel-fpdf": "^1.2",
         "simplesoftwareio/simple-qrcode": "~2",
-        "spomky-labs/jose": "^7.1"
+        "phpseclib/phpseclib": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

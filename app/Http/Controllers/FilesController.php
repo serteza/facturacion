@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use phpseclib\Crypt\RSA;
 use Illuminate\Http\Request;
-use Jose\Factory\JWKFactory;
 use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
@@ -91,7 +91,22 @@ class FilesController extends Controller
             $pathTocreate = $path."/".$dir.".key";
             $keyFile =  file_get_contents($pathTocreate);
 
-            $res = JWKFactory::createFromKeyFile($pathTocreate, $passphrase, ['use' => 'sig', 'alg'=> 'RS256']);
+            $rsa = new RSA();
+            $rsa->setPassword($passphrase);
+            $rsa->loadKey($keyFile);
+            $private = openssl_pkey_get_private($rsa->getPrivateKey(), $passphrase);
+            error_log($private);
+            /*
+            $fileKey = Principal::$AppPath . "docs/sat/ACO560518KW7-20001000000300005692.key"; // Ruta al archivo key
+            $rsa = new RSA();
+            $rsa->setPassword("12345678a");//Clave 
+            $rsa->load(file_get_contents($fileKey));
+            $private = openssl_pkey_get_private($rsa->getPrivateKey(), "12345678a");//Otra vez la clave
+            $sig = "";
+            openssl_sign($this->CadenaOriginal, $sig, $private, OPENSSL_ALGO_SHA256);
+            $sello = base64_encode($sig);
+            $this->Comprobante->Sello = $sello;
+            */
 
             //$res=openssl_pkey_new();
 
@@ -99,8 +114,7 @@ class FilesController extends Controller
             //openssl_pkey_export($keyFile, $res, $passphrase);
 
             //$keypemFile = "-----BEGIN PRIVATE KEY-----\r\n" . chunk_split(base64_encode($keyFile), 64) . "-----END PRIVATE KEY-----";
-            error_log($res);
-            return response()->json(["message" => $res],200);
+            return response()->json(["message" => $private],200);
             //exec("openssl pkcs8 -inform DER -in ".$pathTocreate." -out ".$fileOut." -passin pass:".$passphrase);
             $response .= ", el archivo .key.pem creado ";
 
