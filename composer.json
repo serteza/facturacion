@@ -12,8 +12,7 @@
         "econea/nusoap": "^0.9.5.1",
         "league/flysystem": " ~1.0",
         "codedge/laravel-fpdf": "^1.2",
-        "simplesoftwareio/simple-qrcode": "~2",
-        "phpseclib/phpseclib": "~2.0"
+        "simplesoftwareio/simple-qrcode": "~2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

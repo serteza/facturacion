@@ -25,18 +25,6 @@ class ComplementoPagoController extends Controller
         //error_log( print_r($Certificado, TRUE) );
         $parseSerialNumber= $Certificado['serialNumberHex'];
 
-        /*$priv_key = Storage::get($req->Emisor['Rfc'].'/CSD_A_CIN140605QM1_20160926_201703.key');
-        $passphrase ="crh140605";
-        $keys = openssl_pkey_new(array("digest_alg" => 'sha512',
-                                       "private_key_bits" => 1024,
-                                       "private_key_type" => OPENSSL_KEYTYPE_RSA));
-
-        openssl_pkey_export($keys, $privkey, $passphrase );
-        
-        //openssl_private_decrypt($crypttext,$newsource,$res);
-
-        error_log( $privkey);*/
-    
         //obtenemos numero de certificado
         $serialNumber = '';
         for($i=1;$i<strlen($parseSerialNumber);$i=$i+2){
@@ -47,7 +35,7 @@ class ComplementoPagoController extends Controller
         $rfcEmisor = preg_split('[/.-]', $Certificado['subject']['x500UniqueIdentifier'])[0];
         $razonEmisor = $Certificado['subject']['name'];
         //convertimos certificado a base64
-        $pathCer = Storage::get($req->Emisor['Rfc'].'/'.$serialNumber.'.cer');
+        $pathCer = Storage::get($req->Emisor['Rfc'].'/'.$req->Emisor['Rfc'].'.cer');
         $b4cer = base64_encode($pathCer);
         //se genera el header cfdi:Comprobante
         $xml = $genXML->xmlHeader($xml, $req->Comprobante, $serialNumber, $b4cer);

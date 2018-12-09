@@ -19,5 +19,14 @@ $api->version('v1', function ($api) {
         'uses' => 'App\Http\Controllers\FilesController@storeKeys',
         'as' => 'api.keys'
     ]);
+    //catalogos
+    $api->get('/catalogos_sat', [
+        'uses' => 'App\Http\Controllers\CatalogosController@catalogos',
+        'as' => 'api.catalogos_sat'
+    ]);
 
+    $api->get('/cadena', [
+        'uses' => 'App\Http\Controllers\FacturasController@facturas',
+        'as' => 'api.catalogos_sat'
+    ]);
 });
