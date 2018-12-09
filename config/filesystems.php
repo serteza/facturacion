@@ -41,11 +41,11 @@ return [
             'url' => env('APP_URL').'/storage/app/keys',
             'visibility' => 'public',
         ],
-        'styles' => [
+        'catalogos' => [
             'driver' => 'local',
-            'root' => storage_path('css'),
-            'url' => env('APP_URL').'/storage/css',
-            'visibility' => 'private',
+            'root' => storage_path('catalogos'),
+            'url' => env('APP_URL').'/storage/catalogos',
+            'visibility' => 'public',
         ],
         'logos' => [
             'driver' => 'local',
