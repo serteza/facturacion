@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Catalogos\Catalogos;
 use Illuminate\Support\Facades\Storage;
 
 class CatalogosController extends Controller
@@ -15,6 +16,8 @@ class CatalogosController extends Controller
         $q = "";
         $json = '{}';
         $path = "";
+
+        $catalogo = new Catalogos();
 
         if($req->has('cat')){
             $cat = $query['cat'];
@@ -31,7 +34,9 @@ class CatalogosController extends Controller
             $q = $query['q'];
             $jsonQuery = json_decode(file_get_contents($path),false, 512, JSON_UNESCAPED_UNICODE);
 
-            return response()->json(["catalogo" => gettype($jsonQuery)],200);
+            $json = $catalogo->catalogo($cat, $jsonQuery, $q);
+
+            return response()->json(["catalogo" => $json],200);
         }else{
             $json = json_decode(file_get_contents($path),false, 512, JSON_UNESCAPED_UNICODE);
             return response()->json(["catalogo" => $json],200);
@@ -41,4 +46,6 @@ class CatalogosController extends Controller
 
        
     }
+
+
 }
