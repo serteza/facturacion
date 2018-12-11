@@ -1,0 +1,66 @@
+{
+    "Comprobante":{
+        "Serie":"", 
+        "Folio":"", 
+        "Fecha":"", 
+        "FormaPago":"---", 
+        "NoCertificado":"", 
+        "Certificado":"", 
+        "CondicionesDePago":"---", 
+        "SubTotal":"",
+        "Descuento":"---",  
+        "Moneda":"", 
+        "Total":"", 
+        "TipoDeComprobante":"", 
+        "MetodoPago":"---", 
+        "LugarExpedicion":""
+    },
+
+    "Emisor":{
+        "Rfc":"", 
+        "Nombre":"", 
+        "RegimenFiscal":""
+    },
+
+    "Receptor":{
+        "Rfc":"", 
+        "Nombre":"", 
+        "UsoCFDI":""
+    },
+
+    "Conceptos":[
+        {
+            "ClaveProdServ":"", 
+            "ClaveUnidad":"", 
+            "NoIdentificacion":"", 
+            "Cantidad":"", 
+            "Unidad":"", 
+            "Descripcion":"", 
+            "ValorUnitario":"", 
+            "Importe":"",
+            "Impuestos":{
+                "Traslados":[
+                    {
+                        "Base":"", 
+                        "Impuesto":"", 
+                        "TipoFactor":"", 
+                        "TasaOCuota":"", 
+                        "Importe":""
+                    }
+                ]
+            }
+        }
+    ],
+
+    "Impuestos":{
+        "TotalImpuestosTrasladados":"",
+        "Traslados":[
+            {
+                "Impuesto":"", 
+                "TipoFactor":"", 
+                "TasaOCuota":"", 
+                "Importe":""
+            }
+        ]
+    }
+}

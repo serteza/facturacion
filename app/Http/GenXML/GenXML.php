@@ -5,15 +5,28 @@ use Illuminate\Support\Facades\Storage;
 
 class GenXML {
 
-    public function xmlHeader($xml, $Comprobante, $serialNumber, $b4cer){
+    public function xmlHeader($xml, $tipo, $Comprobante, $serialNumber, $b4cer){
 
         $comprobante = json_decode(json_encode($Comprobante, true));
         
         $nodoComprobante = $xml->createElement('cfdi:Comprobante');
 
-        $nodoComprobante->setAttribute('xmlns:pago10', 'http://www.sat.gob.mx/Pagos');
+        $xmlns=""; $xmlnsAttribute="";
+        $schemaLocation="";
+
+        if($tipo == "complemento"){
+            $xmlns="xmlns:pago10"; 
+            $xmlnsAttribute="http://www.sat.gob.mx/Pagos";
+            $schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/Pagos http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xsd";
+        } else if ($tipo == "factura"){
+            $xmlns="xmlns:cfdi"; 
+            $xmlnsAttribute="http://www.sat.gob.mx/cfd/3";
+            $schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
+        }
+
+        $nodoComprobante->setAttribute($xmlns, $xmlnsAttribute);
         $nodoComprobante->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-        $nodoComprobante->setAttribute('xsi:schemaLocation', 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/Pagos http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xsd');
+        $nodoComprobante->setAttribute('xsi:schemaLocation', $schemaLocation);
         $nodoComprobante->setAttribute('Version', '3.3');
         $nodoComprobante->setAttribute('Serie', $comprobante->Serie);
         $nodoComprobante->setAttribute('Folio', $comprobante->Folio);
@@ -21,19 +34,46 @@ class GenXML {
         $nodoComprobante->setAttribute('Fecha', $comprobante->Fecha);
         $nodoComprobante->setAttribute('Sello', '');
 
+        if ($tipo == "factura"){
+            $nodoComprobante->setAttribute('FormaPago', $comprobante->FormaPago);      
+        }
         $nodoComprobante->setAttribute('NoCertificado', $serialNumber);
         $nodoComprobante->setAttribute('Certificado', $b4cer);
-        //total ya con iva
-        $nodoComprobante->setAttribute('SubTotal', '0');
-        //catalogo MXN
-        $nodoComprobante->setAttribute('Moneda', 'XXX');
-        //total ya con iva
-        $nodoComprobante->setAttribute('Total', '0');
-        $nodoComprobante->setAttribute('TipoDeComprobante', 'P');
+        
+        if ($tipo == "factura"){
+            if( $comprobante->Descuento != "" && ($comprobante->TipoDeComprobante == "I" || $comprobante->TipoDeComprobante == "E")){
+                $nodoComprobante->setAttribute('CondicionesDePago', $comprobante->CondicionesDePago); 
+            }     
+        }
+
+        if ($tipo == "factura"){
+            $nodoComprobante->setAttribute('SubTotal', $comprobante->SubTotal);   
+        }else{
+            $nodoComprobante->setAttribute('SubTotal', '0');
+        }
+
+        if ($tipo == "factura"){
+            if( $comprobante->Descuento != "" && ($comprobante->TipoDeComprobante != "T" || $comprobante->TipoDeComprobante != "P")){
+                $nodoComprobante->setAttribute('Descuento', $comprobante->Descuento); 
+            }     
+        }
+        
+        if($tipo == "factura"){
+            $nodoComprobante->setAttribute('Moneda', $comprobante->Moneda);
+            $nodoComprobante->setAttribute('Total', $comprobante->Total);
+            $nodoComprobante->setAttribute('TipoDeComprobante', $comprobante->TipoDeComprobante);
+        }else {
+            $nodoComprobante->setAttribute('Moneda', 'XXX');
+            $nodoComprobante->setAttribute('Total', '0');
+            $nodoComprobante->setAttribute('TipoDeComprobante', 'P');
+        }
         //codigo postal, viene de catalogo
         $nodoComprobante->setAttribute('LugarExpedicion', $comprobante->LugarExpedicion);
-        $nodoComprobante->setAttribute('xmlns:cfdi', 'http://www.sat.gob.mx/cfd/3');
- 
+        
+        if($tipo == "complemento"){
+                $nodoComprobante->setAttribute('xmlns:cfdi', 'http://www.sat.gob.mx/cfd/3');
+        }
+
         $xml->appendChild($nodoComprobante);
 
         return $xml;

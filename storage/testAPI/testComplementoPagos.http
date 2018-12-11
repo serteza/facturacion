@@ -38,3 +38,80 @@ content-type: application/json
         }
     ]
 }
+
+
+{
+    "Comprobante":{
+        "Serie":"A",
+        "Folio":"001",
+        "Fecha":"2018-12-10T18:34:45",
+        "LugarExpedicion":"97219"
+    },
+    "Emisor":{
+        "Rfc":"CIN140605QM1",
+        "Nombre":"CRH INNOVACION SCP",
+        "RegimenFiscal":"601"
+    },
+    "Receptor":{
+        "Rfc":"SMP090115A50",
+        "Nombre":"SERVICIOS MULTIPLES DE PERSONAL TECNICO Y OPERATIVO S DE RL DE CV",
+        "UsoCFDI":"P01"
+    },
+    "Pago":{
+        "FechaPago":"2018-11-08T12:00:11",
+        "FormaDePagoP":"03",
+        "MonedaP":"MXN",
+        "Monto":"1856.00"
+    },
+    "DoctoRelacionado":[
+        {
+            "IdDocumento":"3BCAAC91-AB6E-44DD-8F3B-95DAE3A99241",
+            "Serie":"A",
+            "Folio":"272",
+            "MonedaDR":"MXN",
+            "MetodoDePagoDR":"PPD",
+            "NumParcialidad":"1",
+            "ImpSaldoAnt":"1856.00",
+            "ImpPagado":"1856.00",
+            "ImpSaldoInsoluto":"0"
+        }
+    ]
+}
+
+{
+    "Comprobante":{
+        "Serie":"A",
+        "Folio":"002",
+        "Fecha":"2018-12-10T18:34:45",
+        "LugarExpedicion":"97219"
+    },
+    "Emisor":{
+        "Rfc":"CIN140605QM1",
+        "Nombre":"CRH INNOVACION SCP",
+        "RegimenFiscal":"601"
+    },
+    "Receptor":{
+        "Rfc":"ADI880815DA7",
+        "Nombre":"LA ANITA DISTRIBUCIONES SA DE CV",
+        "UsoCFDI":"P01"
+    },
+    "Pago":{
+        "FechaPago":"2018-11-12T13:03:49",
+        "FormaDePagoP":"03",
+        "MonedaP":"MXN",
+        "Monto":"4176.00"
+    },
+    "DoctoRelacionado":[
+        {
+            "IdDocumento":"FBF6E79A-585F-41EF-97B5-96A586F2973E",
+            "Serie":"A",
+            "Folio":"273",
+            "MonedaDR":"MXN",
+            "MetodoDePagoDR":"PPD",
+            "NumParcialidad":"1",
+            "ImpSaldoAnt":"4176.00",
+            "ImpPagado":"4176.00",
+            "ImpSaldoInsoluto":"0"
+        }
+    ]
+}

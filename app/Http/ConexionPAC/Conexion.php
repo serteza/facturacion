@@ -9,7 +9,7 @@ class Conexion {
         $url ='';
         $user ='';
         $password ='';
-        if($url == "TEST"){
+        if($type == "TEST"){
             $url = 'https://timbradopruebas.stagefacturador.com/timbrado.asmx?WSDL';
             $user = 'test';
             $password = 'TEST';

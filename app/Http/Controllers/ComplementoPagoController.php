@@ -38,7 +38,7 @@ class ComplementoPagoController extends Controller
         $pathCer = Storage::get($req->Emisor['Rfc'].'/'.$req->Emisor['Rfc'].'.cer');
         $b4cer = base64_encode($pathCer);
         //se genera el header cfdi:Comprobante
-        $xml = $genXML->xmlHeader($xml, $req->Comprobante, $serialNumber, $b4cer);
+        $xml = $genXML->xmlHeader($xml, "complemento", $req->Comprobante, $serialNumber, $b4cer);
         //se genera el emisor y receptor
         $xml = $genXML->xmlEmisorReceptor($xml, $req->Emisor, $req->Receptor);
         //conceptos
@@ -52,8 +52,8 @@ class ComplementoPagoController extends Controller
 
         $xmlString = trim($xml->saveXML());
 
-        //$resultado = $connectPAC->obtenerTimbrado($req->query('type'), $xmlString);
-        $resultado = '{
+        $resultado = $connectPAC->obtenerTimbrado($req->query('type'), $xmlString);
+        /*$resultado = '{
             "obtenerTimbradoResult": {
                 "timbre": {
                     "TimbreFiscalDigital": {
@@ -69,9 +69,10 @@ class ComplementoPagoController extends Controller
                     "!esValido": "True"
                 }
             }
-        }';
-            
-        $resultado = json_decode($resultado, true);
+        }';*/
+        //error_log(gettype($resultado));
+        //error_log(print_r($resultado, TRUE));
+        //$resultado = json_decode($resultado, true);
     
         $response = json_decode(json_encode($resultado, true))->obtenerTimbradoResult->timbre;
         $isValid = $response->{'!esValido'};
