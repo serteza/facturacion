@@ -3,6 +3,12 @@ $api = $app->make(Dingo\Api\Routing\Router::class);
 
 $api->version('v1', function ($api) {
 
+    //Facturas
+    $api->post('/facturacion', [
+        'uses' => 'App\Http\Controllers\FacturasController@facturas',
+        'as' => 'api.facturacion'
+    ]);
+
     //Complementos
     $api->post('/complemento_pagos', [
         'uses' => 'App\Http\Controllers\ComplementoPagoController@complementoPagos',

@@ -2,6 +2,7 @@
 
 namespace App\Http\GenXML;
 use Illuminate\Support\Facades\Storage;
+use App\Http\GenCadenaOriginal\GenCadenaOriginal;
 
 class GenXML {
 
@@ -11,20 +12,15 @@ class GenXML {
         
         $nodoComprobante = $xml->createElement('cfdi:Comprobante');
 
-        $xmlns=""; $xmlnsAttribute="";
         $schemaLocation="";
 
         if($tipo == "complemento"){
-            $xmlns="xmlns:pago10"; 
-            $xmlnsAttribute="http://www.sat.gob.mx/Pagos";
+            $nodoComprobante->setAttribute("xmlns:pago10", "http://www.sat.gob.mx/Pagos");
             $schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/Pagos http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xsd";
         } else if ($tipo == "factura"){
-            $xmlns="xmlns:cfdi"; 
-            $xmlnsAttribute="http://www.sat.gob.mx/cfd/3";
             $schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
         }
 
-        $nodoComprobante->setAttribute($xmlns, $xmlnsAttribute);
         $nodoComprobante->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         $nodoComprobante->setAttribute('xsi:schemaLocation', $schemaLocation);
         $nodoComprobante->setAttribute('Version', '3.3');
@@ -62,6 +58,7 @@ class GenXML {
             $nodoComprobante->setAttribute('Moneda', $comprobante->Moneda);
             $nodoComprobante->setAttribute('Total', $comprobante->Total);
             $nodoComprobante->setAttribute('TipoDeComprobante', $comprobante->TipoDeComprobante);
+            $nodoComprobante->setAttribute('MetodoPago', $comprobante->MetodoPago);
         }else {
             $nodoComprobante->setAttribute('Moneda', 'XXX');
             $nodoComprobante->setAttribute('Total', '0');
@@ -70,10 +67,8 @@ class GenXML {
         //codigo postal, viene de catalogo
         $nodoComprobante->setAttribute('LugarExpedicion', $comprobante->LugarExpedicion);
         
-        if($tipo == "complemento"){
-                $nodoComprobante->setAttribute('xmlns:cfdi', 'http://www.sat.gob.mx/cfd/3');
-        }
-
+        $nodoComprobante->setAttribute('xmlns:cfdi', 'http://www.sat.gob.mx/cfd/3');
+        
         $xml->appendChild($nodoComprobante);
 
         return $xml;
@@ -122,6 +117,99 @@ class GenXML {
         return $xml;
     }
 
+    public function xmlConceptosFactura($xml, $Conceptos){
+
+        $conceptos = json_decode(json_encode($Conceptos, true));
+        
+        $nodoConceptos = $xml->createElement('cfdi:Conceptos');
+
+        foreach ($conceptos as $key => $concepto) {
+            $nodoConcepto = $xml->createElement('cfdi:Concepto');
+
+            $nodoConcepto->setAttribute('ClaveProdServ', $concepto->ClaveProdServ);
+            $nodoConcepto->setAttribute('ClaveUnidad', $concepto->ClaveUnidad);
+            $nodoConcepto->setAttribute('Cantidad', $concepto->Cantidad);
+            $nodoConcepto->setAttribute('Descripcion', $concepto->Descripcion);
+            $nodoConcepto->setAttribute('ValorUnitario', $concepto->ValorUnitario);
+            $nodoConcepto->setAttribute('Importe', $concepto->Importe);
+            $nodoConcepto->setAttribute('Descuento', $concepto->Descuento);
+            //error_log(print_r($concepto->Impuestos, TRUE));
+
+            $nodoImpuestos = $xml->createElement('cfdi:Impuestos');
+
+                if (isset($concepto->Impuestos->Traslado)) {
+                    $nodoTraslados = $xml->createElement('cfdi:Traslados');
+                        $nodoTraslado = $xml->createElement('cfdi:Traslado');
+                            $nodoTraslado->setAttribute('Base', $concepto->Impuestos->Traslado->Base);
+                            $nodoTraslado->setAttribute('Impuesto', $concepto->Impuestos->Traslado->Impuesto);
+                            $nodoTraslado->setAttribute('TipoFactor', $concepto->Impuestos->Traslado->TipoFactor);
+                            $nodoTraslado->setAttribute('TasaOCuota', $concepto->Impuestos->Traslado->TasaOCuota);
+                            $nodoTraslado->setAttribute('Importe', $concepto->Impuestos->Traslado->Importe);
+                            $nodoTraslados->appendChild($nodoTraslado);
+                    $nodoImpuestos->appendChild($nodoTraslados);
+                }
+                if (isset($concepto->Impuestos->Retencion)) {
+                    $nodoRetenciones = $xml->createElement('cfdi:Retenciones');
+                        $nodoRetencion = $xml->createElement('cfdi:Retencion');
+                            $nodoRetencion->setAttribute('Base', $concepto->Impuestos->Retencion->Base);
+                            $nodoRetencion->setAttribute('Impuesto', $concepto->Impuestos->Retencion->Impuesto);
+                            $nodoRetencion->setAttribute('TipoFactor', $concepto->Impuestos->Retencion->TipoFactor);
+                            $nodoRetencion->setAttribute('TasaOCuota', $concepto->Impuestos->Retencion->TasaOCuota);
+                            $nodoRetencion->setAttribute('Importe', $concepto->Impuestos->Retencion->Importe);
+                        $nodoRetenciones->appendChild($nodoRetencion);
+                    $nodoImpuestos->appendChild($nodoRetenciones);
+                }
+
+
+            $nodoConcepto->appendChild($nodoImpuestos);
+        
+            $nodoConceptos->appendChild($nodoConcepto);
+        }
+
+        $getNodoComprobante = $xml->firstChild;
+        $getNodoComprobante->appendChild($nodoConceptos);
+
+        return $xml;
+    }
+
+    public function xmlImpuestos($xml, $Impuestos){
+
+        $impuestos = json_decode(json_encode($Impuestos, true));
+
+        $nodoImpuestos = $xml->createElement('cfdi:Impuestos');
+            $nodoImpuestos->setAttribute('TotalImpuestosRetenidos', $impuestos->TotalImpuestosRetenidos);
+            $nodoImpuestos->setAttribute('TotalImpuestosTrasladados', $impuestos->TotalImpuestosTrasladados);
+
+            if (isset($impuestos->Traslados)) {
+                $nodoTraslados = $xml->createElement('cfdi:Traslados');
+                    foreach($impuestos->Traslados as $key => $traslado){
+                        $nodoTraslado = $xml->createElement('cfdi:Traslado');
+                            $nodoTraslado->setAttribute('Impuesto', $traslado->Impuesto);
+                            $nodoTraslado->setAttribute('TipoFactor', $traslado->TipoFactor);
+                            $nodoTraslado->setAttribute('TasaOCuota', $traslado->TasaOCuota);
+                            $nodoTraslado->setAttribute('Importe', $traslado->Importe);
+                            $nodoTraslados->appendChild($nodoTraslado);
+                    }
+                $nodoImpuestos->appendChild($nodoTraslados);
+            }
+            if (isset($impuestos->Retenciones)) {
+                $nodoRetenciones = $xml->createElement('cfdi:Retenciones');
+                    foreach($impuestos->Retenciones as $key => $retencion){
+                        $nodoRetencion = $xml->createElement('cfdi:Retencion');
+                            $nodoRetencion->setAttribute('Impuesto', $retencion->Impuesto);
+                            $nodoRetencion->setAttribute('TipoFactor', $retencion->TipoFactor);
+                            $nodoRetencion->setAttribute('TasaOCuota', $retencion->TasaOCuota);
+                            $nodoRetencion->setAttribute('Importe', $retencion->Importe);
+                        $nodoRetenciones->appendChild($nodoRetencion);
+                    }
+                $nodoImpuestos->appendChild($nodoRetenciones);
+            }
+
+        $getNodoComprobante = $xml->firstChild;
+        $getNodoComprobante->appendChild($nodoImpuestos);
+        return $xml;
+    }
+
     public function xmlComplementoPago($xml, $Pago, $DoctoRelacionado){
 
         $pago = json_decode(json_encode($Pago, true));
@@ -134,9 +222,9 @@ class GenXML {
         $nodoPagos->setAttribute('Version', '1.0');
 
         $nodoPago = $xml->createElement('pago10:Pago');
-        $nodoPago->setAttribute('FechaPago', $pago->FechaPago);
-        $nodoPago->setAttribute('FormaDePagoP', $pago->FormaDePagoP);
-        $nodoPago->setAttribute('MonedaP', $pago->MonedaP);
+            $nodoPago->setAttribute('FechaPago', $pago->FechaPago);
+            $nodoPago->setAttribute('FormaDePagoP', $pago->FormaDePagoP);
+            $nodoPago->setAttribute('MonedaP', $pago->MonedaP);
         if($pago->MonedaP != "MXN"){
             $nodoPago->setAttribute('TipoCambioP', '');
         }
@@ -144,16 +232,16 @@ class GenXML {
         //$nodoPago->setAttribute('NumOperacion', '');
 
         foreach ($doctoRelacionado as $key => $docto) {
-        $nodoDoctoRelacionado = $xml->createElement('pago10:DoctoRelacionado');
-        $nodoDoctoRelacionado->setAttribute('IdDocumento', $docto->IdDocumento);
-        $nodoDoctoRelacionado->setAttribute('Folio', $docto->Folio);
-        $nodoDoctoRelacionado->setAttribute('MonedaDR', $docto->MonedaDR);
-        $nodoDoctoRelacionado->setAttribute('MetodoDePagoDR', 'PPD');
-        $nodoDoctoRelacionado->setAttribute('NumParcialidad', $docto->NumParcialidad);
-        $nodoDoctoRelacionado->setAttribute('ImpSaldoAnt', $docto->ImpSaldoAnt);
-        $nodoDoctoRelacionado->setAttribute('ImpPagado', $docto->ImpPagado);
-        $nodoDoctoRelacionado->setAttribute('ImpSaldoInsoluto', $docto->ImpSaldoInsoluto);
-        $nodoPago->appendChild($nodoDoctoRelacionado);
+            $nodoDoctoRelacionado = $xml->createElement('pago10:DoctoRelacionado');
+            $nodoDoctoRelacionado->setAttribute('IdDocumento', $docto->IdDocumento);
+            $nodoDoctoRelacionado->setAttribute('Folio', $docto->Folio);
+            $nodoDoctoRelacionado->setAttribute('MonedaDR', $docto->MonedaDR);
+            $nodoDoctoRelacionado->setAttribute('MetodoDePagoDR', 'PPD');
+            $nodoDoctoRelacionado->setAttribute('NumParcialidad', $docto->NumParcialidad);
+            $nodoDoctoRelacionado->setAttribute('ImpSaldoAnt', $docto->ImpSaldoAnt);
+            $nodoDoctoRelacionado->setAttribute('ImpPagado', $docto->ImpPagado);
+            $nodoDoctoRelacionado->setAttribute('ImpSaldoInsoluto', $docto->ImpSaldoInsoluto);
+            $nodoPago->appendChild($nodoDoctoRelacionado);
         }
 
         $nodoPagos->appendChild($nodoPago);
@@ -161,6 +249,23 @@ class GenXML {
         $getNodoComprobante = $xml->firstChild;
         $getNodoComprobante->appendChild($nodoComplemento);
 
+        return $xml;
+    }
+
+    public function cadenaOriginalYSello($xml, $Emisor){
+
+        $emisor = json_decode(json_encode($Emisor, true));
+        $genCadenaOriginal = new GenCadenaOriginal();
+        $xmlString = trim($xml->saveXML());
+        $cadena = $genCadenaOriginal->cadenaOriginal($xmlString);
+
+        error_log($cadena);
+
+        $sello = $this->Sello($cadena, $emisor->Rfc);
+
+        $getNodoComprobante = $xml->firstChild;
+        $getNodoComprobante->setAttribute('Sello', $sello);
+        
         return $xml;
     }
 
@@ -228,7 +333,7 @@ class GenXML {
         //$keyPem = Storage::url($EmisorRFC.'/'.$EmisorRFC.'.key.pem');
 
         $private = openssl_pkey_get_private($keyPem);
-       
+
         openssl_sign($cadena, $sig, $private, OPENSSL_ALGO_SHA256);
         //error_log($cadena);
         //error_log(utf8_encode($sig));

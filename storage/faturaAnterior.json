@@ -1,66 +1,138 @@
-{
-    "Comprobante":{
-        "Serie":"", 
-        "Folio":"", 
-        "Fecha":"", 
-        "FormaPago":"---", 
-        "NoCertificado":"", 
-        "Certificado":"", 
-        "CondicionesDePago":"---", 
-        "SubTotal":"",
-        "Descuento":"---",  
-        "Moneda":"", 
-        "Total":"", 
-        "TipoDeComprobante":"", 
-        "MetodoPago":"---", 
-        "LugarExpedicion":""
-    },
-
-    "Emisor":{
-        "Rfc":"", 
-        "Nombre":"", 
-        "RegimenFiscal":""
-    },
-
-    "Receptor":{
-        "Rfc":"", 
-        "Nombre":"", 
-        "UsoCFDI":""
-    },
-
-    "Conceptos":[
-        {
-            "ClaveProdServ":"", 
-            "ClaveUnidad":"", 
-            "NoIdentificacion":"", 
-            "Cantidad":"", 
-            "Unidad":"", 
-            "Descripcion":"", 
-            "ValorUnitario":"", 
-            "Importe":"",
-            "Impuestos":{
-                "Traslados":[
-                    {
-                        "Base":"", 
-                        "Impuesto":"", 
-                        "TipoFactor":"", 
-                        "TasaOCuota":"", 
-                        "Importe":""
-                    }
-                ]
-            }
-        }
-    ],
-
-    "Impuestos":{
-        "TotalImpuestosTrasladados":"",
-        "Traslados":[
+[
+    {
+        "Comprobante": {
+            "Serie": "",
+            "Folio": "",
+            "Fecha": "",
+            "FormaPago": "---",
+            "CondicionesDePago": "---",
+            "SubTotal": "",
+            "Descuento": "---",
+            "Moneda": "",
+            "Total": "",
+            "TipoDeComprobante": "",
+            "MetodoPago": "---",
+            "LugarExpedicion": ""
+        },
+        "Emisor": {
+            "Rfc": "",
+            "Nombre": "",
+            "RegimenFiscal": ""
+        },
+        "Receptor": {
+            "Rfc": "",
+            "Nombre": "",
+            "UsoCFDI": ""
+        },
+        "Conceptos": [
             {
-                "Impuesto":"", 
-                "TipoFactor":"", 
-                "TasaOCuota":"", 
-                "Importe":""
+                "ClaveProdServ": "",
+                "ClaveUnidad": "",
+                "NoIdentificacion": "",
+                "Cantidad": "",
+                "Unidad": "",
+                "Descripcion": "",
+                "ValorUnitario": "",
+                "Importe": "",
+                "Impuestos": {
+                    "Traslados": [
+                        {
+                            "Base": "",
+                            "Impuesto": "",
+                            "TipoFactor": "",
+                            "TasaOCuota": "",
+                            "Importe": ""
+                        }
+                    ]
+                }
             }
-        ]
+        ],
+        "Impuestos": {
+            "TotalImpuestosTrasladados": "",
+            "Traslados": [
+                {
+                    "Impuesto": "",
+                    "TipoFactor": "",
+                    "TasaOCuota": "",
+                    "Importe": ""
+                }
+            ]
+        }
+    },
+    {
+        "Comprobante": {
+            "Serie": "A",
+            "Folio": "0000",
+            "Fecha": "2018-12-11T10:55:45",
+            "FormaPago": "01",
+            "CondicionesDePago": "UN PAGO",
+            "SubTotal": "10.00",
+            "Descuento": "0",
+            "Moneda": "MXN",
+            "TipoCambio": "1",
+            "Total": "10.00",
+            "TipoDeComprobante": "I",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "77500"
+        },
+        "Emisor": {
+            "Rfc": "LAN7008173R5",
+            "Nombre": "Empresa de prueba PAX",
+            "RegimenFiscal": "601"
+        },
+        "Receptor": {
+            "Rfc": "GOYA780416GM0",
+            "Nombre": "EMPRESA PRUEBAS SA DE CV",
+            "UsoCFDI": "G03"
+        },
+        "Conceptos": [
+            {
+                "ClaveProdServ": "14111526",
+                "ClaveUnidad": "H87",
+                "NoIdentificacion": "1",
+                "Cantidad": "1",
+                "Unidad": "PZA",
+                "Descripcion": "Proc demo",
+                "ValorUnitario": "10.00",
+                "Importe": "10.00",
+                "Descuento": "0",
+                "Impuestos": {
+                    "Traslado": {
+                        "Base": "50",
+                        "Impuesto": "002",
+                        "TipoFactor": "Tasa",
+                        "TasaOCuota": "0.160000",
+                        "Importe": "8"
+                    },
+                    "Retencion": {
+                        "Base": "50",
+                        "Impuesto": "002",
+                        "TipoFactor": "Tasa",
+                        "TasaOCuota": "0.160000",
+                        "Importe": "8"
+                    }
+                }
+            }
+        ],
+        "Impuestos": {
+            "TotalImpuestosRetenidos": "8",
+            "TotalImpuestosTrasladados": "8",
+            "Traslados": [
+                {
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "8"
+                }
+            ],
+            "Retenciones": [
+                {
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "8"
+                }
+            ]
+        }
     }
-}
+]
