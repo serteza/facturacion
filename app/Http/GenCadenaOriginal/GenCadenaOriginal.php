@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\GenCadenaOriginal;
 
+use Genkgo\Xsl\XsltProcessor;
+
 class GenCadenaOriginal {
 
     private static $XSLT_CADENAORIGINAL = 'http://www.sat.gob.mx/sitio_internet/cfd/3/cadenaoriginal_3_3/cadenaoriginal_3_3.xslt';
@@ -28,7 +30,7 @@ class GenCadenaOriginal {
         }
         $xslt = static::cadenaoriginal_path('cadenaoriginal_3_3.xslt');
         if (!file_exists($xslt)) static::download();
-        /** @var \XSLTProcessor $xslt */
+        
         $xslt = (function ($file_xslt) {
             static $xslt = null;
             if (!is_null($xslt)) return $xslt;
@@ -39,7 +41,7 @@ class GenCadenaOriginal {
             $dom->resolveExternals = true;
             $dom->preserveWhiteSpace = true;
             //$xslt_xml = simplexml_load_string($xslt_str);
-            $xslt = new \XSLTProcessor();
+            $xslt = new XSLTProcessor();
             $xslt->importStylesheet($dom);
             return $xslt;
         })(static::cadenaoriginal_path('cadenaoriginal_3_3.xslt'));
@@ -72,12 +74,12 @@ class GenCadenaOriginal {
     {
         $filename = basename(static::$XSLT_CADENAORIGINAL);
         $xslt_str = file_get_contents(static::$XSLT_CADENAORIGINAL);
-        $xslt_str = str_replace("version=\"2.0\"", "version=\"1.0\"", $xslt_str);
+        $xslt_str = str_replace("version=\"2.0\"", "version=\"2.0\"", $xslt_str);
         if (preg_match_all("/href=\"(.+)\"/i", $xslt_str, $matches, PREG_PATTERN_ORDER)) {
             foreach ($matches[1] as $link) {
                 $bname = basename($link);
                 $content = file_get_contents($link);
-                $content = str_replace("version=\"2.0\"", "version=\"1.0\"", $content);
+                $content = str_replace("version=\"2.0\"", "version=\"2.0\"", $content);
                 file_put_contents(static::cadenaoriginal_path($bname), $content);
                 $xslt_str = str_replace($link, './' . $bname, $xslt_str);
             }

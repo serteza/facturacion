@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d543a7a424e287a0ca37eea2a95a092",
+    "content-hash": "75596000802118662b2a8ee4e11bca19",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -462,6 +462,44 @@
                 "soap"
             ],
             "time": "2018-04-19T05:28:20+00:00"
+        },
+        {
+            "name": "genkgo/xsl",
+            "version": "0.6.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/genkgo/xsl.git",
+                "reference": "f0ca8059059320cafb666278081fd74c8cc00e75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/genkgo/xsl/zipball/f0ca8059059320cafb666278081fd74c8cc00e75",
+                "reference": "f0ca8059059320cafb666278081fd74c8cc00e75",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xsl": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "genkgo/cache": "~0.2.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "suggest": {
+                "genkgo/cache": "Cache transpiled templates"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Genkgo\\Xsl\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "XSL 2.0 Transpiler in PHP",
+            "time": "2018-10-11T11:12:47+00:00"
         },
         {
             "name": "illuminate/auth",

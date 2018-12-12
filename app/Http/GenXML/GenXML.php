@@ -259,13 +259,12 @@ class GenXML {
         $xmlString = trim($xml->saveXML());
         $cadena = $genCadenaOriginal->cadenaOriginal($xmlString);
 
-        error_log($cadena);
+        //error_log($cadena);
 
         $sello = $this->Sello($cadena, $emisor->Rfc);
 
         $getNodoComprobante = $xml->firstChild;
         $getNodoComprobante->setAttribute('Sello', $sello);
-        
         return $xml;
     }
 
@@ -307,7 +306,7 @@ class GenXML {
         return $xml;
     }
 
-    public function xmlTimbreFiscal($xml, $TimbreFiscalDigital){
+    public function xmlTimbreFiscal($xml, $TimbreFiscalDigital, $type){
 
         $nodoTimbreFiscal = $xml->createElement('tfd:TimbreFiscalDigital');
         
@@ -321,8 +320,18 @@ class GenXML {
         $nodoTimbreFiscal->setAttribute('NoCertificadoSAT', $TimbreFiscalDigital->{'!NoCertificadoSAT'});
         $nodoTimbreFiscal->setAttribute('SelloSAT', $TimbreFiscalDigital->{'!SelloSAT'});
 
-        $getNodoComplemento = $xml->getElementsByTagName('cfdi:Complemento')->item(0);
-        $getNodoComplemento->appendChild($nodoTimbreFiscal);
+        if($type == "factura"){
+            $nodoComplemento = $xml->createElement('cfdi:Complemento');
+            $nodoComplemento->appendChild($nodoTimbreFiscal);
+            
+            $getNodoComprobante = $xml->firstChild;
+            $getNodoComprobante->appendChild($nodoComplemento);
+
+        }else{
+            $getNodoComplemento = $xml->getElementsByTagName('cfdi:Complemento')->item(0);
+            $getNodoComplemento->appendChild($nodoTimbreFiscal);
+        }
+
 
         return $xml;
     }

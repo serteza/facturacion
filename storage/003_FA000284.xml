@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante   xmlns:cfdi="http://www.sat.gob.mx/cfd/3" 
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                    xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" 
+                    Version="3.3" 
+                    Serie="A" 
+                    Folio="284" 
+                    Fecha="2018-12-07T13:23:15" 
+                    Sello="OHZZnIlpOi6EiR1WcUugKBs/zMLYF/kHdzHpFd19Wzo9yW3OzMuOkehwkUBgsZ3Jt03Dr7871vy1m9OmkH3TTY+UnqnkAu1VUENCg15FbQYiJ2nwvOZGN5F1ub5Qx4hJjJzIJpDKC7Ihod9vsETkhbaPYCWe325ypvrY+YTS8nWmZoUFR6ErCCKjzNXx1BjRY4DzHT/uSkAdH13neivh/6ktjC0I1kLLQmh5fVMBbVPHAS6yqYvBqjThNRu4bXUAhU5wYLVkk1oqYQlQC+oBxddPuX3PbYvrpdDuOKpdxIeMMaoC2rd8Z35+H2pPX517LhsenlpseYG4qix6/suBig==" 
+                    NoCertificado="00001000000403772922" 
+                    Certificado="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" 
+                    FormaPago="99" 
+                    CondicionesDePago="CONTADO/CREDITO" 
+                    SubTotal="5000.00" 
+                    Moneda="MXN" 
+                    Total="5800.00" 
+                    TipoDeComprobante="I" 
+                    MetodoPago="PPD" 
+                    LugarExpedicion="97219">
+  <cfdi:Emisor Rfc="CIN140605QM1" Nombre="CRH INNOVACION SCP" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="SMP080512JY8" Nombre="SERVICIOS MULTIPLES DE PERSONAL EN LA REGION S DE RL DE CV" UsoCFDI="G03"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto  ClaveProdServ="80111712" 
+                    ClaveUnidad="E48" 
+                    NoIdentificacion="S-30" 
+                    Cantidad="1" 
+                    Unidad="UNIDAD DE SERVICIO" 
+                    Descripcion="SOPORTE DE SISTEMAS Y REDES" 
+                    ValorUnitario="5000.00" 
+                    Importe="5000.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado  Base="5000.00" 
+                          Impuesto="002" 
+                          TipoFactor="Tasa" 
+                          TasaOCuota="0.160000" 
+                          Importe="800.00"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="800">
+    <cfdi:Traslados>
+      <cfdi:Traslado  Impuesto="002" 
+                      TipoFactor="Tasa" 
+                      TasaOCuota="0.160000" 
+                      Importe="800"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital  xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" 
+                              xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/TimbreFiscalDigital/TimbreFiscalDigital.xsd" 
+                              Version="1.1" 
+                              FechaTimbrado="2018-12-07T13:23:18" 
+                              SelloCFD="OHZZnIlpOi6EiR1WcUugKBs/zMLYF/kHdzHpFd19Wzo9yW3OzMuOkehwkUBgsZ3Jt03Dr7871vy1m9OmkH3TTY+UnqnkAu1VUENCg15FbQYiJ2nwvOZGN5F1ub5Qx4hJjJzIJpDKC7Ihod9vsETkhbaPYCWe325ypvrY+YTS8nWmZoUFR6ErCCKjzNXx1BjRY4DzHT/uSkAdH13neivh/6ktjC0I1kLLQmh5fVMBbVPHAS6yqYvBqjThNRu4bXUAhU5wYLVkk1oqYQlQC+oBxddPuX3PbYvrpdDuOKpdxIeMMaoC2rd8Z35+H2pPX517LhsenlpseYG4qix6/suBig==" 
+                              NoCertificadoSAT="00001000000405908583" 
+                              SelloSAT="PpfJZivcJhoAFf0c8prWlETJP60YI1st3YLCRXxhCmvVwOCSt1HRoqiF48RrUE8Zk2x3CO2P6I3sC/Va6eSna3axe/Oi8NK4GjKQakykDNKzPWy2rOWr9xFNxd0HP41Shr//hzQusfgkCyM/gWYYBUlqSEJBVGPxuU9bRtP5qI8X1Eye8GhxzDf46abgmsfRvFzLDg9NHrhq6QiS3CK4pmpgV3++HRDkE7d2W4uvbvwYBVknVH1k5JNCDwloBYj2W+/bXeVhMU7xlB/UTV/cRTYeXfezJh/58Q+ewftJzlaujrXFm68wtFVoiuxucNoznKbWMPtk1l/KQFVswsvRAA==" 
+                              UUID="C660575E-9D75-45CC-89DE-CA5C90370E66"/>
+  </cfdi:Complemento>
+</cfdi:Comprobante>

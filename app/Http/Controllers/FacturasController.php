@@ -38,13 +38,13 @@ class FacturasController extends Controller
 
       $xml = $genXML->xmlConceptosFactura($xml, $req->Conceptos);
 
-      $xml = $genXML->cadenaOriginalYSello($xml, $req->Emisor);
-
       $xml = $genXML->xmlImpuestos($xml, $req->Impuestos);
+
+      $xml = $genXML->cadenaOriginalYSello($xml, $req->Emisor);
 
       $xmlString = trim($xml->saveXML());
 
-      return response()->make(($xmlString), 200, ['Content-Type' => 'application/xml']);
+      //return response()->make(($xmlString), 200, ['Content-Type' => 'application/xml']);
 
       $resultado = $connectPAC->obtenerTimbrado($req->query('type'), $xmlString);
 
@@ -52,7 +52,7 @@ class FacturasController extends Controller
       $isValid = $response->{'!esValido'};
       if($isValid == "True"){
 
-          $xml = $genXML->xmlTimbreFiscal($xml, $response->TimbreFiscalDigital);
+          $xml = $genXML->xmlTimbreFiscal($xml, $response->TimbreFiscalDigital, 'factura');
           $xmlTimbreFiscal = trim($xml->saveXML());
 
           //return response()->json(["timbre" => $Certificado],200);

@@ -78,7 +78,7 @@ class ComplementoPagoController extends Controller
         $isValid = $response->{'!esValido'};
         if($isValid == "True"){
 
-            $xml = $genXML->xmlTimbreFiscal($xml, $response->TimbreFiscalDigital);
+            $xml = $genXML->xmlTimbreFiscal($xml, $response->TimbreFiscalDigital, 'complemento');
             $xmlTimbreFiscal = trim($xml->saveXML());
 
             //return response()->json(["timbre" => $Certificado],200);
