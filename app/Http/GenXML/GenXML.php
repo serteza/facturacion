@@ -2,6 +2,7 @@
 
 namespace App\Http\GenXML;
 use Illuminate\Support\Facades\Storage;
+use App\Http\GenCadenaOriginal\GenCadenaPagos;
 use App\Http\GenCadenaOriginal\GenCadenaOriginal;
 
 class GenXML {
@@ -259,7 +260,7 @@ class GenXML {
         $xmlString = trim($xml->saveXML());
         $cadena = $genCadenaOriginal->cadenaOriginal($xmlString);
 
-        //error_log($cadena);
+        error_log($cadena);
 
         $sello = $this->Sello($cadena, $emisor->Rfc);
 

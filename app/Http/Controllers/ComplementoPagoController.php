@@ -46,9 +46,11 @@ class ComplementoPagoController extends Controller
         //complemento y pagos
         $xml = $genXML->xmlComplementoPago($xml,$req->Pago, $req->DoctoRelacionado);
         //generacion de la cadena original del complemento de pago
-        $xml = $genXML->cadenaOriginalCompPago($xml,$req->Comprobante,$serialNumber,
+        /*$xml = $genXML->cadenaOriginalCompPago($xml,$req->Comprobante,$serialNumber,
                                             $req->Emisor, $req->Receptor,$req->Pago,
-                                            $req->DoctoRelacionado);
+                                            $req->DoctoRelacionado);*/
+
+        $xml = $genXML->cadenaOriginalYSello($xml, $req->Emisor);
 
         $xmlString = trim($xml->saveXML());
 
