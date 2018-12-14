@@ -13,16 +13,16 @@ class CreateUsersEmpresasTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios_has_empresas', function (Blueprint $table) {
+        Schema::create('users_has_empresas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish_ci';
             
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            $table->foreign('usuario_id')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
                   ->references('id')
-                  ->on('usuarios')
+                  ->on('users')
                   ->onDelete('cascade');
 
             $table->integer('empresa_id')->unsigned();
@@ -34,7 +34,7 @@ class CreateUsersEmpresasTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index('usuario_id');
+            $table->index('user_id');
             $table->index('empresa_id');
         });
     }
@@ -46,6 +46,6 @@ class CreateUsersEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios_has_empresas');
+        Schema::dropIfExists('users_has_empresas');
     }
 }

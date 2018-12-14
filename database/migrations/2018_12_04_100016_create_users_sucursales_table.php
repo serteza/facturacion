@@ -13,16 +13,16 @@ class CreateUsersSucursalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios_has_sucursales', function (Blueprint $table) {
+        Schema::create('adt_users_has_sucursales', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish_ci';
             
             $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            $table->foreign('usuario_id')
+            $table->integer('adt_user_id')->unsigned();
+            $table->foreign('adt_user_id')
                   ->references('id')
-                  ->on('usuarios')
+                  ->on('adt_users')
                   ->onDelete('cascade');
 
             $table->integer('sucursal_id')->unsigned();
@@ -34,7 +34,7 @@ class CreateUsersSucursalesTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index('usuario_id');
+            $table->index('adt_user_id');
             $table->index('sucursal_id');
         });
     }
@@ -46,6 +46,6 @@ class CreateUsersSucursalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios_has_sucursales');
+        Schema::dropIfExists('adt_users_has_sucursales');
     }
 }
