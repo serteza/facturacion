@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:dW+bCzwyYHV+ySLYyXpC0HQFNo62eVgDPJq096s/v+M='),
+    'key' => env('APP_KEY', 'base64:p1xrF2MKstAc+M13zjDFymvrtzCdJ3JY+qiY+eT+JfM='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -39,5 +39,12 @@ return [
     |
     */
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'es'),
+
+    'providers' => [
+    
+            Dingo\Api\Provider\LaravelServiceProvider::class,
+            Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        
+    ]
 
 ];

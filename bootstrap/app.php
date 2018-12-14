@@ -91,8 +91,8 @@ $app->singleton(
 */
 
 $app->middleware([
-    App\Http\Middleware\CORSMiddleware::class
-    //App\Http\Middleware\Authenticate::class
+    //App\Http\Middleware\CORSMiddleware::class
+    'CorsMiddleware' => App\Http\Middleware\CORSMiddleware::class,
 ]);
 
 $app->routeMiddleware([
@@ -110,10 +110,12 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\GuardServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+//$app->register(App\Providers\GuardServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+//$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 // Dingo Adapter for Lumen
 $app->register(Zeek\LumenDingoAdapter\Providers\LumenDingoAdapterServiceProvider::class);

@@ -9,6 +9,14 @@ $api->version('v1', function ($api) {
         'as' => 'api.login',
     ]);
 
+    $api->group([
+        'middleware' => 'api.auth',
+    ], function ($api) {
+        $api->get('/user',[
+            'uses' => 'App\Http\Controllers\Auth\AuthController@getUserData',
+            'as' => 'api.user',
+        ]);
+    });
     //Facturas
     $api->post('/facturacion', [
         'uses' => 'App\Http\Controllers\FacturasController@facturas',

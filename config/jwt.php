@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'secret' => env('JWT_SECRET', 'Xy6voMaMnIHWd185if7NABukbUxDnUf3'),
+    'secret' => env('JWT_SECRET', 'EFupyjV2fe5Wdjer9s0r0cGaDT9P4it7'),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
     |
     */
     //Aqui puse el ID del usuario de la tabla seg_catusuarios
-    'identifier' => 'UsuarioID',
+    'identifier' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,7 +155,9 @@ return [
         |
         */
 
-        'auth' => 'Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter',
+        'auth' => function ($app) {
+            return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['auth']);
+        },
 
         /*
         |--------------------------------------------------------------------------

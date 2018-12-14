@@ -20,9 +20,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
  * @property AdtUser[] $adtUsers
  * @property UsersHasEmpresa[] $usersHasEmpresas
  */
-class User extends Model implements
-AuthenticatableContract,
-AuthorizableContract
+class User extends Model implements AuthenticatableContract,AuthorizableContract
 {
     use Authenticatable, Authorizable;
     /**

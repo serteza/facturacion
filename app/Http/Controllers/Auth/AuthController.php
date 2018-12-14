@@ -24,32 +24,33 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
-        try {
-            $this->validate($request, [
+        $this->validate($request, [
                 'name' => 'required',
                 'password' => 'required',
-            ]);
+        ]);
+            
+        $user = User::select(['id','name', 'rol','password'])
+            ->where('name', $request->name)->first();
 
-             $user = User::select(['id','name', 'password'])
-             ->where('name', $request->name)
-             ->first();
-
-         } catch (ValidationException $e) {
-             return $e->getResponse();
-         }
-
-         try {
-             // Attempt to verify the credentials and create a token for the user
-             if  (!$token = JWTAuth::fromUser($user)) {
-                return $this->onUnauthorized();
+        if($user == null){
+            return response()->json(['error'=>'Unauthorized'],401);
+        }else{
+            if(Hash::check($request->password, $user->password)){
+                try {
+                    // Attempt to verify the credentials and create a token for the user
+                    if  (!$token = JWTAuth::fromUser($user)) {
+                        return $this->onUnauthorized();
+                    }
+                } catch (JWTException $e) {
+                    // Something went wrong whilst attempting to encode the token
+                    return $this->onJwtGenerationError();
+                }
+                return $this->onAuthorized($token, $user);
+            }else{
+                return response()->json(['error'=>'Unauthorized'],401);
             }
-         } catch (JWTException $e) {
-             // Something went wrong whilst attempting to encode the token
-             return $this->onJwtGenerationError();
-         }
+        }
 
-        // // All good so return the token
-        return $this->onAuthorized($token, $user);
     }
 
     /**
@@ -83,6 +84,7 @@ class AuthController extends Controller
      */
     protected function onAuthorized($token, $user)
     {
+        unset($user->password);
         return new JsonResponse([
             'message' => 'token_generated',
             'user' => $user,
@@ -163,6 +165,10 @@ class AuthController extends Controller
     
         }
     
+        unset($user->password);
+        unset($user->deleted_at);
+        unset($user->created_at);
+        unset($user->updated_at);
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
     }
