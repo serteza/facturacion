@@ -26,13 +26,12 @@ class AuthController extends Controller
     {
         try {
             $this->validate($request, [
-                'username' => 'required',
+                'name' => 'required',
                 'password' => 'required',
             ]);
 
-             $user = User::select(['UsuarioID','Nombre'])
-             ->where('Usuario', $request->username)
-             ->where("Password",  $request->password)
+             $user = User::select(['id','name', 'password'])
+             ->where('name', $request->name)
              ->first();
 
          } catch (ValidationException $e) {
@@ -102,7 +101,7 @@ class AuthController extends Controller
      */
     protected function getCredentials(Request $request)
     {
-        return $request->only('Usuario', 'Password');
+        return $request->only('name', 'password');
     }
 
     /**
