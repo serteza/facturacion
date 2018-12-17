@@ -121,14 +121,15 @@ $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Zeek\LumenDingoAdapter\Providers\LumenDingoAdapterServiceProvider::class);
 
 // Lumen Generator disabled it on production if you want
-//$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 $app->register(Codedge\Fpdf\FpdfServiceProvider::class);
 
 $app->register(SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
 
-//$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
 
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -139,6 +140,11 @@ $app->register(SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+$app->configure('mail');
+$app->alias('mailer', Illuminate\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../routes/api.php';

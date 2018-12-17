@@ -13,7 +13,10 @@
         "league/flysystem": " ~1.0",
         "codedge/laravel-fpdf": "^1.2",
         "simplesoftwareio/simple-qrcode": "~2",
-        "genkgo/xsl": "^0.6.9"
+        "genkgo/xsl": "^0.6.9",
+        "illuminate/support": "5.4.*",
+        "illuminate/mail": "5.4.*",
+        "guzzlehttp/guzzle": "^6.3" 
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
