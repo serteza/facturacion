@@ -16,6 +16,11 @@ $api->version('v1', function ($api) {
             'uses' => 'App\Http\Controllers\Auth\AuthController@getUserData',
             'as' => 'api.user',
         ]);
+
+        $api->post('/user',[
+            'uses' => 'App\Http\Controllers\Auth\AuthController@createUser',
+            'as' => 'api.createUser',
+        ]);
     });
     //Facturas
     $api->post('/facturacion', [

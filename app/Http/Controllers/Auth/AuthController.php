@@ -172,9 +172,6 @@ class AuthController extends Controller
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
     }
-
-   
-
     /**
      * Get authenticated user.
      *
@@ -188,6 +185,80 @@ class AuthController extends Controller
             return response()->json(['user'=>$user],200);
         }else{
             return response()->json(['error'=>'Unauthorized'],401);
+        }
+    }
+
+    public function createUser(Request $req){
+
+        $this->validate($request, [
+            'email' => 'required',
+            'name' => 'required',
+            'rol' => 'required',
+            'password' => 'required',
+        ]);
+        
+        $currentUser = JWTAuth::parseToken()->authenticate();
+
+        if($currentUser->rol == "1" || $currentUser->rol == "2"){
+            //error_log("entro en rol 1 o 2");
+            $newUser = new User();
+            $findUser = User::where('name', $req->name)->orWhere('email', $req->email)->first();
+            if($currentUser->rol == "1" ){
+                //error_log("entro en rol 1");
+                //error_log($req->rol);
+                if($req->rol > 1 && $req->rol < 4){
+                    //error_log("rol a crear es entre 2 y 3");
+                    if(is_null($findUser)){
+                        $newUser->email = $req->email;
+                        $newUser->name = $req->name;
+                        $newUser->rol = $req->rol;
+                        $newUser->password = Hash::make($req->password);
+                        $newUser->created_at = date('Y-m-d H:m:s');
+                        $newUser->updated_at = date('Y-m-d H:m:s');
+                        $newUser->save();
+
+                        unset($newUser->password);
+                        unset($newUser->deleted_at);
+                        unset($newUser->created_at);
+                        unset($newUser->updated_at);
+                        return response()->json(['user'=>$newUser],200);
+                    } else {
+                        return response()->json(['user'=>'El usuario que intento crear ya existe'],200);
+                    }
+                    
+                }else{
+                    return response()->json(['error'=>'Forbidden'],403);
+                }
+                
+            }else {
+                if($req->rol == 2 || $req->rol == 3){
+                    //error_log("el rol es entre 2 y 3");
+                    if(is_null($findUser)){
+                        $newUser->email = $req->email;
+                        $newUser->name = $req->name;
+                        $newUser->rol = $req->rol;
+                        $newUser->password = Hash::make($req->password);
+                        $newUser->created_at = date('Y-m-d H:m:s');
+                        $newUser->updated_at = date('Y-m-d H:m:s');
+                        $newUser->save();
+
+                        unset($newUser->password);
+                        unset($newUser->deleted_at);
+                        unset($newUser->created_at);
+                        unset($newUser->updated_at);
+                        return response()->json(['user'=>$newUser],200);
+                    } else {
+                        return response()->json(['user'=>'El usuario que intento crear ya existe'],200);
+                    }
+                }else{
+                    //error_log("el rol a crear no es ni 2 ni 3");
+                    return response()->json(['error'=>'Forbidden'],403);
+                }
+            }
+            
+        } else {
+            //error_log("no es ni 1 ni 2");
+            return response()->json(['error'=>'Forbidden'],403);
         }
     }
 
