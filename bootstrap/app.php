@@ -121,13 +121,13 @@ $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Zeek\LumenDingoAdapter\Providers\LumenDingoAdapterServiceProvider::class);
 
 // Lumen Generator disabled it on production if you want
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+//$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 $app->register(Codedge\Fpdf\FpdfServiceProvider::class);
 
 $app->register(SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
 
-$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+//$app->register(Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
 
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 /*
