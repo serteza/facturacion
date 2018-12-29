@@ -13,7 +13,7 @@ class Conexion {
             $url = 'https://timbradopruebas.stagefacturador.com/timbrado.asmx?WSDL';
             $user = 'test';
             $password = 'TEST';
-        }else{
+        }else if ($type == "PROD"){
             $url = 'https://timbrado.facturador.com/timbrado.asmx?WSDL';
             $user = 'GilKatzyn';
             $password = 'ZpaneTx6';
