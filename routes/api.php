@@ -27,6 +27,12 @@ $api->version('v1', function ($api) {
         'uses' => 'App\Http\Controllers\FacturasController@facturas',
         'as' => 'api.facturacion'
     ]);
+    
+    //Retenciones
+    $api->post('/retenciones', [
+        'uses' => 'App\Http\Controllers\RetencionesController@retenciones',
+        'as' => 'api.retenciones'
+    ]);
 
     //Complementos
     $api->post('/complemento_pagos', [
