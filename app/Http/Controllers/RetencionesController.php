@@ -39,13 +39,12 @@ class RetencionesController extends Controller
       $xml = $genXML->xmlPeriodos($xml, $req->Periodo);
     
       $xml = $genXML->xmlImpuestos($xml, $req->Impuesto);
-      echo "aqui";
+      //echo "aqui despues de impuestos";
       $xml = $genXML->cadenaOriginalYSello($xml, $req->Emisor);
       
-      echo "aqui".$xml;
 
       $xmlString = trim($xml->saveXML());
-      echo "aqui";
+      //echo "aqui cuando se guarda";
 
       return response()->make(($xmlString), 200, ['Content-Type' => 'application/xml']);
 

@@ -111,15 +111,14 @@ class GenXMLDevol {
         $xmlString = trim($xml->saveXML());
         
         $cadena = $genCadenaOriginal->cadenaOriginal($xmlString);
-        echo "cadena";
-
+        
         error_log($cadena);
         
         $sello = $this->Sello($cadena, $emisor->Rfc);
 
         $getNodoComprobante = $xml->firstChild;
         $getNodoComprobante->setAttribute('Sello', $sello);
-        print_r("CADENA ORIGINAL");
+        //print_r("CADENA ORIGINAL");
         return $xml;
     }
 
@@ -149,7 +148,7 @@ class GenXMLDevol {
     }
 
     private function Sello($cadena, $EmisorRFC){
-
+        
         $keyPem = Storage::get($EmisorRFC.'/'.$EmisorRFC.'.key.pem');
         //$keyPem = Storage::url($EmisorRFC.'/'.$EmisorRFC.'.key.pem');
 
@@ -159,7 +158,7 @@ class GenXMLDevol {
         //error_log($cadena);
         //error_log(utf8_encode($sig));
         $sello = base64_encode($sig);
-
+        
         return $sello;
     }
 }

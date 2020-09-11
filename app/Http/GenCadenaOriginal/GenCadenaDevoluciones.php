@@ -41,12 +41,13 @@ class GenCadenaDevoluciones {
             $dom->resolveExternals = true;
             $dom->preserveWhiteSpace = true;
             //$xslt_xml = simplexml_load_string($xslt_str);
+            //print_r($xslt_str);
+            //print_r($file_xslt);
             $xslt = new XSLTProcessor();
             $xslt->importStylesheet($dom);
-            print_r($xslt);
+            //print_r($xslt);
             return $xslt;
         })(static::cadenaoriginal_path('retenciones.xslt'));
-        echo"llego";
         return $xslt->transformToXml($dom_xml);
     }
     /**
@@ -70,7 +71,7 @@ class GenCadenaDevoluciones {
             $directory = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'xslt33';
             if (!file_exists($directory)) mkdir($directory, 0775, true);
         }
-        echo $directory . ($file ? '/' . $file : '');
+        //echo "AUI INICIA -->".$directory . ($file ? '/' . $file : '')."<--";
         return $directory . ($file ? '/' . $file : '');
     }
     private static function download()

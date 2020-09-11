@@ -18,10 +18,10 @@
 <xsl:include href="./enajenaciondeacciones.xslt"/>
 <xsl:include href="./fideicomisonoempresarial.xslt"/>
 <xsl:include href="./intereses.xslt"/>
-<xsl:include href="./intereseshipotecarios/intereseshipotecarios.xslt"/>
-<xsl:include href="./pagosaextranjeros/pagosaextranjeros.xslt"/>
-<xsl:include href="./planesderetiro/planesderetiro.xslt"/>
-<xsl:include href="./premios/premios.xslt"/>
+<xsl:include href="./intereseshipotecarios.xslt"/>
+<xsl:include href="./pagosaextranjeros.xslt"/>
+<xsl:include href="./planesderetiro.xslt"/>
+<xsl:include href="./premios.xslt"/>
 <xsl:include href="./operacionesconderivados.xslt"/>
 <xsl:include href="./sectorfinanciero.xslt"/>
 <xsl:include href="./planesderetiro11.xslt"/>
