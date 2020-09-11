@@ -39,19 +39,20 @@ class RetencionesController extends Controller
       $xml = $genXML->xmlPeriodos($xml, $req->Periodo);
     
       $xml = $genXML->xmlImpuestos($xml, $req->Impuesto);
-      //echo "aqui despues de impuestos";
+      // echo "aqui despues de impuestos";
       $xml = $genXML->cadenaOriginalYSello($xml, $req->Emisor);
       
 
       $xmlString = trim($xml->saveXML());
       //echo "aqui cuando se guarda";
 
-      return response()->make(($xmlString), 200, ['Content-Type' => 'application/xml']);
+      // return response()->make(($xmlString), 200, ['Content-Type' => 'application/xml']);
 
       $resultado = $connectPAC->obtenerTimbrado($req->query('type'), $xmlString);
 
       $response = json_decode(json_encode($resultado, true))->obtenerTimbradoResult->timbre;
       $isValid = $response->{'!esValido'};
+    
       if($isValid == "True"){
         echo "aqui";
 
@@ -61,7 +62,7 @@ class RetencionesController extends Controller
           //return response()->json(["timbre" => $Certificado],200);
           return response()->make(($xmlTimbreFiscal), 200, ['Content-Type' => 'application/xml']);
       }else{
-          return response()->json(["timbre" => $response->errores],200);
+          return response()->json(["timbre" => $response],200);
       }
 
     

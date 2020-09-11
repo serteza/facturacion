@@ -14,8 +14,8 @@ class GenXMLDevol {
         $nodoComprobante = $xml->createElement('retenciones:Retenciones');
 
         $schemaLocation="";
-
         
+
         $nodoComprobante->setAttribute("xmlns:retenciones", "http://www.sat.gob.mx/esquemas/retencionpago/1");
         $schemaLocation="http://www.sat.gob.mx/esquemas/retencionpago/1 http://www.sat.gob.mx/esquemas/retencionpago/1/retencionpagov1.xsd";
         $nodoComprobante->setAttribute('xsi:schemaLocation', $schemaLocation);
